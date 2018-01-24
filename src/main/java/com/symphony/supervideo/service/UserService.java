@@ -19,9 +19,20 @@ public class UserService {
     @Autowired
     public IUserRepository iUserRepository;
 
+    /**
+     * 查询所有用户信息
+     * @zz
+     */
     public List<UserInfo> queryAllUsers(){
         List<UserInfo> list = new ArrayList<UserInfo>();
         list = iUserRepository.findAll();
         return list;
+    }
+    /**
+     * 注册存储用户信息
+     * @ygh
+     */
+    public void saveUser(UserInfo userInfo){
+       iUserRepository.save(userInfo);
     }
 }
