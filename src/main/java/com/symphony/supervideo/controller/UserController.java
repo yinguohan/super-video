@@ -7,10 +7,7 @@ import com.symphony.supervideo.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -110,5 +107,17 @@ public class UserController {
     public String userRegister(UserInfo userInfo){
         userService.saveUser(userInfo);
         return "redirect:index";
+    }
+    /**
+     * Ajax登录验证
+     * @ygh.
+     */
+    @GetMapping(value = "/tryUserName")
+    @ResponseBody
+    public String tryUserName(String userName){
+        if(userService.tryUserName(userName)){
+            return "1";
+        }
+        return null;
     }
 }

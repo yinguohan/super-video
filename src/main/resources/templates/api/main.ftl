@@ -13,7 +13,12 @@
     <h1>网络视频爬虫系统主页面</h1>
     <a href="/queryAllUsers">查询所有用户</a>
     <a href="/adminLogin">管理员主界面</a><br/>
-
+    <br/>用户登录<br/>
+    <form action="/userLogin" method="post">
+        <span>用户账号</span><input type="text" name="userName" /><br/>
+        <span>用户密码</span><input type="password" name="userPass" /><br/>
+        <input type="submit" value="登录" />
+    </form>
     用户实时讨论窗口
     <div id="ws">
         <input id="text" type="text"/><br/>

@@ -35,4 +35,20 @@ public class UserService {
     public void saveUser(UserInfo userInfo){
        iUserRepository.save(userInfo);
     }
+    /**
+     * 判断用户名是否存在
+     * @ygh
+     */
+    public boolean tryUserName(String userName){
+        List<UserInfo> list = new ArrayList<UserInfo>();
+        list = iUserRepository.findAll();
+        for (UserInfo user:list) {
+            if(user.getUserName().equals(userName)){
+                System.out.println("已存在");
+                return false;
+            }
+        }
+        System.out.println("不存在");
+        return true;
+    }
 }
