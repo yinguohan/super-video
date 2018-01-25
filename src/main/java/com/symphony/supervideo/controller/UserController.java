@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zz.
@@ -109,15 +111,19 @@ public class UserController {
         return "redirect:index";
     }
     /**
-     * Ajax登录验证
-     * @ygh.
+     * 验证用户名是否可用
+     * @ygh
      */
     @GetMapping(value = "/tryUserName")
     @ResponseBody
-    public String tryUserName(String userName){
+    public Map<String,String> tryUserName(String userName){
+        Map<String,String> map = new HashMap<String, String>();
         if(userService.tryUserName(userName)){
-            return "1";
+            map.put("result","抱歉，该账号已被注册！");
+        }else {
+            map.put("result","恭喜，该账号可以使用！");
         }
-        return null;
+        return map;
+
     }
 }

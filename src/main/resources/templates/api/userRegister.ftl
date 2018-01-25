@@ -6,12 +6,21 @@
     <link th:href="@{css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet" />
 </head>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#user1").click(function(){
-            htmlobj=$.ajax({url:"/tryUserName",async:false});
-        });
-    });
+<script>
+    $(function () {
+        $('#user1').blur(function () {
+            $.ajax({
+                type:"get",url:"tryUserName",data:{userName:$('#user1').val()},
+                dataType:"json",
+                success:function(data){
+                    alert(data.result);
+                },
+                error: function() {
+                    alert("error");
+                }
+            })
+        })
+    })
 </script>
 <body>
 <h1 style="text-align: center;color:#8e4cc7;">用户注册页面</h1>
